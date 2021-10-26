@@ -1,0 +1,35 @@
+{
+  "name": "@inoy/terminal-banner-plugin",
+  "version": "0.0.1",
+  "description": "Webpack plugin for showing banner in terminal",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inoyakaigor/TerminalBannerPlugin.git"
+  },
+  "exports": {
+    ".": {
+      "require":  "./index.js",
+      "default": "./index.mjs"
+    }
+  },
+  "module": "./index.mjs",
+  "keywords": [
+    "webpack",
+    "plugin",
+    "terminal",
+    "banner"
+  ],
+  "author": "Igor «InoY» Zvyagintsev <inoyakaigor@ya.ru> (https://inoyakaigor.ru)",
+  "license": "GPL-3.0",
+  "engines" : {
+    "node" : ">=14"
+  },
+  "bugs": {
+    "url": "https://github.com/inoyakaigor/TerminalBannerPlugin/issues"
+  },
+  "homepage": "https://github.com/inoyakaigor/TerminalBannerPlugin#readme"
+}
