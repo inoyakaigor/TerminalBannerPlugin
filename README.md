@@ -8,7 +8,7 @@ Webpack plugin for showing banner after all notifications
 ## Using
 ```js
 // webpack.config.js
-const TerminalBannerPlugin = require('@inoy/terminalbannerplugin')
+const TerminalBannerPlugin = require('@inoy/terminal-banner-plugin')
 // other code
 
 module.exports = {
