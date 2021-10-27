@@ -4,12 +4,12 @@ const cp = require('child_process');
 
 class TerminalBannerPlugin {
     constructor() {
-        this.VERSION = this.getVersion()
+        this.TAG = this.getTag()
         this.BRANCH = this.getBranch()
         this.folder = path.basename(process.cwd())
     }
 
-    getVersion = () => cp.execSync('git describe --abbrev=0 --tags').toString().trim()
+    getTag = () => cp.execSync('git describe --abbrev=0 --tags').toString().trim()
     getBranch = () => cp.execSync('git rev-parse --abbrev-ref HEAD').toString().trim()
 
     apply = compiler => {
@@ -23,12 +23,12 @@ class TerminalBannerPlugin {
         const BLUE = '\x1b[44m'
         const NC = '\x1b[0m' // no color
 
-        const str = `⌫ ${this.VERSION} │ ⎇ ${this.BRANCH}`
+        const str = `⌫ ${this.TAG} │ ⎇ ${this.BRANCH}`
 
         setTimeout(() => { //hack:  print after all
-            console.log(`\n${GREEN}┏${'━'.repeat(this.VERSION.length + 4)}┯${'━'.repeat(this.BRANCH.length + 4)}┓`)
+            console.log(`\n${GREEN}┏${'━'.repeat(this.TAG.length + 4)}┯${'━'.repeat(this.BRANCH.length + 4)}┓`)
             console.log(`┃ ${str} ┃`)
-            console.log(`┗${'━'.repeat(this.VERSION.length + 4)}┷${'━'.repeat(this.BRANCH.length + 4)}┛${NC}`)
+            console.log(`┗${'━'.repeat(this.TAG.length + 4)}┷${'━'.repeat(this.BRANCH.length + 4)}┛${NC}`)
 
             console.log(`${BLUE} ${this.folder} ${NC}${RED} ${(new Date).toLocaleTimeString()} ${NC}\n`)
         }, 0)
