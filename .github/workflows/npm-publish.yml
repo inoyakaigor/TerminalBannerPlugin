@@ -19,6 +19,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
+      - run: chmod -R u+x .
       - run: npm run build
 
   publish-npm:
