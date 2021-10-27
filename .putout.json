@@ -1,0 +1,1 @@
+{    "rules": {        "convert-esm-to-commonjs": "on",        "remove-console": "off"    }}
