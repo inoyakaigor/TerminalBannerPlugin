@@ -4,7 +4,7 @@
   "description": "Webpack plugin for showing banner in terminal",
   "main": "index.mjs",
   "scripts": {
-    "build": "npx -y copy ./index.mjs ./index.js && npx -y putout ./index.js --fix",
+    "build": "npx -y putout ./index.js --fix",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {

@@ -20,6 +20,7 @@ jobs:
         with:
           node-version: 14
       - run: chmod -R u+x .
+      - run: cp ./index.mjs ./index.js
       - run: npm run build
 
   publish-npm:
