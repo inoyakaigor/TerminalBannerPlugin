@@ -1,5 +1,6 @@
-const path = require('path')
-const cp = require('child_process')
+'use strict';
+const path = require('path');
+const cp = require('child_process');
 
 class TerminalBannerPlugin {
     constructor() {
@@ -34,4 +35,4 @@ class TerminalBannerPlugin {
     }
 }
 
-module.exports = TerminalBannerPlugin
+module.exports = TerminalBannerPlugin;
