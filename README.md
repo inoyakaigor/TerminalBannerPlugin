@@ -2,6 +2,7 @@
 Webpack plugin for showing banner after all notifications
 
 [![npm Version](https://img.shields.io/npm/v/@inoy/terminal-banner-plugin.svg)](https://www.npmjs.com/package/@inoy/terminal-banner-plugin)
+[![Terminal Banner Plugin](https://github.com/inoyakaigor/TerminalBannerPlugin/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/inoyakaigor/TerminalBannerPlugin/actions/workflows/npm-publish.yml)
 
 ![Terminal banner screenshot](screenshot.png)
 
