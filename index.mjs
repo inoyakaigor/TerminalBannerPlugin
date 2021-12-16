@@ -8,8 +8,23 @@ class TerminalBannerPlugin {
         this.folder = path.basename(process.cwd())
     }
 
-    getTag = () => cp.execSync('git describe --abbrev=0 --tags').toString().trim()
-    getBranch = () => cp.execSync('git rev-parse --abbrev-ref HEAD').toString().trim()
+    getTag = () => {
+        try {
+            return cp.execSync('git describe --abbrev=0 --tags', {encoding: 'utf8'}).toString().trim()
+        } catch (error) {
+            console.log('Got error with message:', error.stderr.toString())
+            return '<unknown>'
+        }
+    }
+
+    getBranch = () => {
+        try {
+            return cp.execSync('git rev-parse --abbrev-ref HEAD', {encoding: 'utf8'}).toString().trim()
+        } catch (error) {
+            console.log('Got error with message:', error.stderr.toString())
+            return '<unknown>'
+        }
+    }
 
     apply = compiler => {
         compiler.hooks.done.tap('TerminalBannerPlugin', this.compilationDone)
