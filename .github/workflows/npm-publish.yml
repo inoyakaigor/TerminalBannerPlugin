@@ -21,19 +21,27 @@ jobs:
           node-version: 14
       - run: chmod -R u+x .
       - run: cp ./index.mjs ./index.js
-      - run: ls -l
       - run: npm run build
       - run: ls -l
+      - name: 'Upload prepared files'
+        uses: actions/upload-artifact@v2
+        with:
+          name: prepared-to-publish
+          path: .
 
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      # - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
+      - name: 'Download files to publish'
+        uses: actions/download-artifact@v2
+        with:
+          name: prepared-to-publish
       - run: ls -l
       - run: npm publish --dry-run
         env:
