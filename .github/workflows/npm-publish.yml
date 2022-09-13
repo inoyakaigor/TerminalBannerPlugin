@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
       - run: chmod -R u+x .
       - run: cp ./index.mjs ./index.js
       - run: npm run build
@@ -34,7 +34,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
           registry-url: https://registry.npmjs.org/
       - name: 'Download files to publish'
         uses: actions/download-artifact@v2
