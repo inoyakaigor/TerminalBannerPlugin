@@ -21,6 +21,8 @@ module.exports = {
 }
 ```
 
+The banner will show only in development mode
+
 ## Requirements
 Minimal supported is Node 14 and Webpack 5. Node 12 and Webpack 4 should work but I didn't test.
 

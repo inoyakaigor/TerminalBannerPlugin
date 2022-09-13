@@ -3,9 +3,7 @@ import cp from 'child_process'
 
 class TerminalBannerPlugin {
     constructor() {
-        this.TAG = this.getTag()
-        this.BRANCH = this.getBranch()
-        this.folder = path.basename(process.cwd())
+        this.isDevMode = false
     }
 
     getTag = () => {
@@ -27,24 +25,34 @@ class TerminalBannerPlugin {
     }
 
     apply = compiler => {
+        if (compiler.options.mode == 'development') {
+            this.isDevMode = true
+        }
+
         compiler.hooks.done.tap('TerminalBannerPlugin', this.compilationDone)
     }
 
     compilationDone = () => {
+        if (!this.isDevMode) {
+            return
+        }
         // COLORS https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
         const RED = '\x1b[41m'
         const GREEN = '\x1b[32m'
         const BLUE = '\x1b[44m'
         const NC = '\x1b[0m' // no color
+        const tag = this.getTag()
+        const branch = this.getBranch()
+        const folder = path.basename(process.cwd())
 
-        const str = `⌫ ${this.TAG} │ ⎇ ${this.BRANCH}`
+        const str = `⌫ ${tag} │ ⎇ ${branch}`
 
         setTimeout(() => { //hack:  print after all
-            console.log(`\n${GREEN}┏${'━'.repeat(this.TAG.length + 4)}┯${'━'.repeat(this.BRANCH.length + 4)}┓`)
+            console.log(`\n${GREEN}┏${'━'.repeat(tag.length + 4)}┯${'━'.repeat(branch.length + 4)}┓`)
             console.log(`┃ ${str} ┃`)
-            console.log(`┗${'━'.repeat(this.TAG.length + 4)}┷${'━'.repeat(this.BRANCH.length + 4)}┛${NC}`)
+            console.log(`┗${'━'.repeat(tag.length + 4)}┷${'━'.repeat(branch.length + 4)}┛${NC}`)
 
-            console.log(`${BLUE} ${this.folder} ${NC}${RED} ${(new Date).toLocaleTimeString()} ${NC}\n`)
+            console.log(`${BLUE} ${folder} ${NC}${RED} ${(new Date).toLocaleTimeString()} ${NC}\n`)
         }, 0)
     }
 }
