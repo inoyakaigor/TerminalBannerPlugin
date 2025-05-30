@@ -3,8 +3,10 @@ import cp from 'child_process'
 import { styleText } from 'node:util'
 
 class TerminalBannerPlugin {
-    constructor() {
+    constructor({ emptyLineBefore, emptyLineAfter } = {}) {
         this.isDevMode = false
+        this.putEmptyLineBefore = emptyLineBefore ?? true
+        this.putEmptyLineAfter = emptyLineAfter ?? true
     }
 
     getTag = () => {
@@ -49,11 +51,19 @@ class TerminalBannerPlugin {
         const dateText = styleText('bgRed', styleText('whiteBright', ` ${(new Date).toLocaleTimeString()} `))
 
         setTimeout(() => { //hack:  print after all
+            if (this.putEmptyLineBefore) {
+                console.log('\n')
+            }
+
             console.log(`${topBorder}`)
             console.log(contentLine)
             console.log(bottomBorder)
 
             console.log(`${folderText}${dateText}`)
+
+            if (this.putEmptyLineAfter) {
+                console.log('\n')
+            }
         }, 0)
     }
 }
