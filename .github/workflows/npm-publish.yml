@@ -15,15 +15,15 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20.12.0
       - run: chmod -R u+x .
       - run: cp ./index.mjs ./index.js
       - run: npm run build
       - name: 'Upload prepared files'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: prepared-to-publish
           path: .
@@ -32,12 +32,12 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
           node-version: 20.12.0
           registry-url: https://registry.npmjs.org/
       - name: 'Download files to publish'
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: prepared-to-publish
       - run: npm publish
