@@ -16,7 +16,10 @@ module.exports = {
     //… rest of your webpack config
     plugins: [
         new WebpackNotifier2Plugin(/* check out my other plugin ;-) */),
-        new TerminalBannerPlugin()
+        new TerminalBannerPlugin({
+            emptyLineBefore: false, // optional; put empty line before the banner
+            emptyLineAfter: false // optional; put empty line after the banner
+        })
     ]
 }
 ```

@@ -24,7 +24,7 @@
     "terminal",
     "banner"
   ],
-  "author": "Igor «InoY» Zvyagintsev <inoyakaigor@ya.ru> (https://inoyakaigor.ru)",
+  "author": "Igor «InoY» Zviagintsev <inoyakaigor@ya.ru> (https://inoy.dev)",
   "license": "GPL-3.0",
   "engines": {
     "node": ">=20.12.0"
