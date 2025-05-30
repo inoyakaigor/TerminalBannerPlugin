@@ -1,5 +1,6 @@
 import path from 'path'
 import cp from 'child_process'
+import { styleText } from 'node:util'
 
 class TerminalBannerPlugin {
     constructor() {
@@ -36,23 +37,23 @@ class TerminalBannerPlugin {
         if (!this.isDevMode) {
             return
         }
-        // COLORS https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
-        const RED = '\x1b[41m'
-        const GREEN = '\x1b[32m'
-        const BLUE = '\x1b[44m'
-        const NC = '\x1b[0m' // no color
+
         const tag = this.getTag() ?? '<unknown>'
         const branch = this.getBranch() ?? '<unknown>'
         const folder = path.basename(process.cwd())
 
-        const str = `⌫ ${tag} │ ⎇ ${branch}`
+        const topBorder = styleText('green', `┏${'━'.repeat(tag.length + 4)}┯${'━'.repeat(branch.length + 4)}┓`)
+        const contentLine = styleText('green', `┃ ⌫ ${tag} │ ⎇ ${branch} ┃`)
+        const bottomBorder = styleText('green', `┗${'━'.repeat(tag.length + 4)}┷${'━'.repeat(branch.length + 4)}┛`)
+        const folderText = styleText('bgBlue', styleText('whiteBright', ` ${folder} `))
+        const dateText = styleText('bgRed', styleText('whiteBright', ` ${(new Date).toLocaleTimeString()} `))
 
         setTimeout(() => { //hack:  print after all
-            console.log(`\n${GREEN}┏${'━'.repeat(tag.length + 4)}┯${'━'.repeat(branch.length + 4)}┓`)
-            console.log(`┃ ${str} ┃`)
-            console.log(`┗${'━'.repeat(tag.length + 4)}┷${'━'.repeat(branch.length + 4)}┛${NC}`)
+            console.log(`${topBorder}`)
+            console.log(contentLine)
+            console.log(bottomBorder)
 
-            console.log(`${BLUE} ${folder} ${NC}${RED} ${(new Date).toLocaleTimeString()} ${NC}\n`)
+            console.log(`${folderText}${dateText}`)
         }, 0)
     }
 }

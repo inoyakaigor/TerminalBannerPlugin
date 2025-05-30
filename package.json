@@ -27,7 +27,7 @@
   "author": "Igor «InoY» Zvyagintsev <inoyakaigor@ya.ru> (https://inoyakaigor.ru)",
   "license": "GPL-3.0",
   "engines": {
-    "node": ">=14"
+    "node": ">=20.12.0"
   },
   "bugs": {
     "url": "https://github.com/inoyakaigor/TerminalBannerPlugin/issues"
