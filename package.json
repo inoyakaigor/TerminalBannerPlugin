@@ -1,6 +1,6 @@
 {
   "name": "@inoy/terminal-banner-plugin",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Webpack plugin for showing banner in terminal",
   "main": "index.mjs",
   "scripts": {
