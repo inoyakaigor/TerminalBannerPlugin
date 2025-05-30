@@ -8,19 +8,19 @@ class TerminalBannerPlugin {
 
     getTag = () => {
         try {
-            return cp.execSync('git describe --abbrev=0 --tags', {encoding: 'utf8'}).toString().trim()
+            return cp.execSync('git describe --abbrev=0 --tags', { encoding: 'utf8' }).toString().trim()
         } catch (error) {
             console.log('Got error with message:', error.stderr.toString())
-            return '<unknown>'
+            return
         }
     }
 
     getBranch = () => {
         try {
-            return cp.execSync('git rev-parse --abbrev-ref HEAD', {encoding: 'utf8'}).toString().trim()
+            return cp.execSync('git rev-parse --abbrev-ref HEAD', { encoding: 'utf8' }).toString().trim()
         } catch (error) {
             console.log('Got error with message:', error.stderr.toString())
-            return '<unknown>'
+            return
         }
     }
 
@@ -41,8 +41,8 @@ class TerminalBannerPlugin {
         const GREEN = '\x1b[32m'
         const BLUE = '\x1b[44m'
         const NC = '\x1b[0m' // no color
-        const tag = this.getTag()
-        const branch = this.getBranch()
+        const tag = this.getTag() ?? '<unknown>'
+        const branch = this.getBranch() ?? '<unknown>'
         const folder = path.basename(process.cwd())
 
         const str = `⌫ ${tag} │ ⎇ ${branch}`
