@@ -1,5 +1,8 @@
 Changelog
 ===============================================================================
+# 1.0.1
+Update README
+
 # 1.0.0
 ### 💥Breaking changes
 * Use Nodejs's built-in function for styling text; bump the minimum supported version to v20.19.0
