@@ -23,11 +23,19 @@ module.exports = {
     ]
 }
 ```
+Also you can use couple of functions `getTag` and `getBranch` separately
+
+```js
+const terminalBannerPlugin = new TerminalBannerPlugin()
+
+const currentTag = terminalBannerPlugin.getTag() ?? 'unknown tag'
+const currentBranch = terminalBannerPlugin.getBranch() ?? 'unknown branch'
+```
 
 The banner will show only in development mode
 
 ## Requirements
-Minimal supported is Node 14 and Webpack 5. Node 12 and Webpack 4 should work but I didn't test.
+Minimal supported Node version is 20.19.
 
 ## License
 GPLv3
